@@ -1,0 +1,71 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+	<!-- sidebar: style can be found in sidebar.less -->
+	<section class="sidebar" *ngIf="auth.isAuthenticated()">
+		<!-- Sidebar user panel (optional) -->
+		<div class="user-panel">
+			<div class="pull-left image">
+				<img [src]="auth.getUserPicture()" class="img-circle"
+					[alt]="auth.getUserName()">
+			</div>
+			<div class="pull-left info">
+				<p>{{auth.getUserName()}}</p>
+				<!-- Status -->
+				<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+			</div>
+		</div>
+ </section>
+
+ <section class="sidebar" >
+		<!-- search form (Optional) -->
+		<form action="#" method="get" class="sidebar-form">
+			<div class="input-group">
+				<input type="text" name="q" class="form-control"
+					placeholder="Search..."> <span class="input-group-btn">
+					<button type="submit" name="search" id="search-btn"
+						class="btn btn-flat">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			</div>
+		</form>
+		<!-- /.search form -->
+
+
+		<!-- Sidebar Menu -->
+		<ul class="sidebar-menu">
+			<!-- zjy <li class="header">NAVIGATION</li> -->
+			<template ngFor let-item [ngForOf]="menuTree"> 
+        <!-- 没有下级菜单 -->
+        <template [ngIf]="!item.subMenu">
+			    <li [class.active]="item.id === currMenuId">
+          <a	*ngIf="item.icon" [routerLink]="item.url"> 
+                <i class="fa fa-{{item.icon}}"></i> <span>{{item.name}}</span>  			    
+          </a> 
+          </li>
+			  </template>
+        
+        <!-- 有下级菜单 -->
+        <template [ngIf]="item.subMenu">
+			    <li class="treeview">
+             <a href="#"> 
+               <i *ngIf="item.icon"  class="fa fa-{{item.icon}}"></i> 
+               <span>{{item.name}}</span> 
+               <i	class="fa fa-angle-left pull-right"></i>
+			       </a>
+			    	<ul class="treeview-menu">
+					<template ngFor let-subitem [ngForOf]="item.subMenu">
+					  <li [class.active]="subitem.id === curMenuId">
+              <a	 [routerLink]="subitem.url"> 
+                <i	*ngIf="subitem.icon" class="fa fa-{{subitem.icon}}"></i> 
+                <span>{{subitem.name}}</span>
+					    </a> 
+           </li>
+					</template>
+				</ul></li>
+			</template> </template>
+		</ul>
+		<!-- /.sidebar-menu -->
+	</section>
+	<!-- /.sidebar -->
+</aside>
