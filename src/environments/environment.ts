@@ -16,6 +16,7 @@ export const environment = {
     messagingSenderId: '201342590340',
     storageBucket: 'ng2-admin-lte-a3958.appspot.com'
   },
-  production: false,
-  silent: false
+  production: true,
+  silent: false,
+  apiurl: 'http://localhost:8080/'
 };

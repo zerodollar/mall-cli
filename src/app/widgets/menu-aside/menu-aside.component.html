@@ -45,7 +45,7 @@
           </li>
 			  </template>
         
-        <!-- 有下级菜单 -->
+        <!-- 二级菜单 -->
         <template [ngIf]="item.subMenu">
 			    <li class="treeview">
              <a href="#"> 
@@ -55,12 +55,35 @@
 			       </a>
 			    	<ul class="treeview-menu">
 					<template ngFor let-subitem [ngForOf]="item.subMenu">
+            <!-- 三级菜单  -->
+            <template [ngIf]="!subitem.subMenu">
 					  <li [class.active]="subitem.id === curMenuId">
               <a	 [routerLink]="subitem.url"> 
                 <i	*ngIf="subitem.icon" class="fa fa-{{subitem.icon}}"></i> 
                 <span>{{subitem.name}}</span>
 					    </a> 
-           </li>
+           </li> </template>
+
+
+            <template [ngIf]="subitem.subMenu">
+             <a href="#"> 
+               <i *ngIf="subitem.icon"  class="fa fa-{{subitem.icon}}"></i> 
+               <span>{{subitem.name}}</span> 
+               <i	class="fa fa-angle-left pull-right"></i>
+			       </a>
+			    	<ul class="treeview-menu">
+					<template ngFor let-subsubitem [ngForOf]="subitem.subMenu">
+            <li [class.active]="subsubitem.id === curMenuId">
+              <a	 [routerLink]="subsubitem.url"> 
+                <i	*ngIf="subsubitem.icon" class="fa fa-{{subsubitem.icon}}"></i> 
+                <span>{{subsubitem.name}}</span>
+					    </a> 
+           </li> </template>
+			    	</ul>
+            </template>
+
+
+
 					</template>
 				</ul></li>
 			</template> </template>

@@ -11,6 +11,7 @@ export class AuthService {
   private auth: any;
   private profile: Auth0UserProfile;
 
+    /*
   constructor(private af: AngularFire, private notif: NotificationService) {
     this.lock = new auth0Lock(environment.auth0.clientID, environment.auth0.domain, this.generateLockOption());
     this.auth = new Auth0({ callbackURL: '', clientID: environment.auth0.clientID, domain: environment.auth0.domain });
@@ -107,4 +108,15 @@ export class AuthService {
       target: environment.auth0.clientID
     };
   }
+  */
+
+   public isAuthenticated = (): boolean => {
+    return false;
+  }
+    public login = (): void => {     
+  }
+
+  public logout = (): void => {
+  }
+
 }

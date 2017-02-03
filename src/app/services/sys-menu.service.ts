@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import { SysMenu } from '../models/sys-menu';
+import { environment } from '../../environments/environment';
 
 
 //TODO  这里和mall-api协商 系统菜单返回的格式，是平铺／还是树形, api返回tree形比较好
@@ -10,13 +11,21 @@ import { SysMenu } from '../models/sys-menu';
 @Injectable()
 export class SysMenuService {
 // private headers = new Headers({'Content-Type': 'application/json'});
-private sysMenuUrl = 'http://localhost:8080/v1/SYS_MENU_INF';  // URL to web api
+private sysMenuUrl = environment.apiurl +  'v1/SYS_MENU_INF';  // URL to web api
+
+
   constructor(private http: Http) {}
   getSysMenuList(): Promise<SysMenu[]> {
-      return this.http.get(this.sysMenuUrl,
-                          {headers: new Headers({  'Origin': 'http://localhost:4200'})    })
+    /* 1 .then(function(value){
+                console.log("in promise1 ---- success");
+                console.log(value.json());
+                return value.json();
+            })
+        2 .then(response => response.json().data as SysMenu[])
+    */
+      return this.http.get(this.sysMenuUrl)
                   .toPromise()
-                 .then(response => response.json().data as SysMenu[])
+                  .then(response => response.json() as SysMenu[])
                  .catch(this.handleError);
   }
   private handleError(error: any): Promise<any> {
