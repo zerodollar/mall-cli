@@ -14,7 +14,9 @@ export class SysMenuService {
 private sysMenuUrl = environment.apiurl +  'v1/SYS_MENU_INF';  // URL to web api
 
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    
+  }
   getSysMenuList(): Promise<SysMenu[]> {
     /* 1 .then(function(value){
                 console.log("in promise1 ---- success");

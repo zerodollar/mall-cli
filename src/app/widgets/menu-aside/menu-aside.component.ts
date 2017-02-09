@@ -91,13 +91,13 @@ export class MenuAsideComponent implements OnInit {
         for (let i in this.menuTree){
           
         if(this.menuTree[i].subMenu == undefined){
-          console.log("not parent"+this.menuTree[i].id);
+          //console.log("not parent"+this.menuTree[i].id);
           continue;
         }
-        console.log(" parent is "+this.menuTree[i].id);
+        //console.log(" parent is "+this.menuTree[i].id);
           for(let j in this.menuTree[i].subMenu){
           if (this.menuTree[i].subMenu[j].id == item.parentid){
-            console.log(" parenttt is "+this.menuTree[i].subMenu[j].id );
+            //console.log(" parenttt is "+this.menuTree[i].subMenu[j].id );
             if (this.menuTree[i].subMenu[j].subMenu == undefined){
               this.menuTree[i].subMenu[j].subMenu = [];
             }
@@ -114,7 +114,7 @@ export class MenuAsideComponent implements OnInit {
 
      }
 
-    console.log( this.menuTree)
+   // console.log( this.menuTree)
    
   }
  
